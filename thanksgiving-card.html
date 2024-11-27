@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Send a warm Thanksgiving greeting with this interactive holiday card featuring a charming turkey and falling autumn leaves.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/thanksgiving-card">
+    <meta property="og:title" content="Interactive Thanksgiving Card">
+    <meta property="og:description" content="Send a warm Thanksgiving greeting with this interactive holiday card featuring a charming turkey and falling autumn leaves.">
+    <meta property="og:image" content="https://your-domain.com/path-to-your-meta-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/thanksgiving-card">
+    <meta property="twitter:title" content="Interactive Thanksgiving Card">
+    <meta property="twitter:description" content="Send a warm Thanksgiving greeting with this interactive holiday card featuring a charming turkey and falling autumn leaves.">
+    <meta property="twitter:image" content="https://your-domain.com/path-to-your-meta-image.jpg">
+
+    <title>Interactive Thanksgiving Card</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #FAF0E6;
+            font-family: 'Georgia', serif;
+        }
+
+        .card {
+            width: 350px;
+            height: 500px;
+            margin: 20px auto;
+            background: linear-gradient(145deg, #FFF8DC, #FAEBD7);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            font-family: 'Georgia', serif;
+            position: relative;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            color: #8B4513;
+            font-size: 24px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .message {
+            color: #5C4033;
+            font-size: 18px;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .leaves {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #D2691E;
+            clip-path: polygon(
+                50% 0%, 
+                35% 15%, 
+                25% 25%,
+                15% 35%, 
+                20% 50%, 
+                10% 60%,
+                15% 70%, 
+                35% 75%,
+                50% 85%,
+                65% 75%,
+                85% 70%,
+                90% 60%,
+                80% 50%,
+                85% 35%,
+                75% 25%,
+                65% 15%
+            );
+            transform-origin: center;
+        }
+
+        .leaf1 { top: -50px; left: 15%; animation: fall1 8s linear infinite; }
+        .leaf2 { top: -50px; right: 25%; animation: fall2 6s linear infinite; }
+        .leaf3 { top: -50px; left: 45%; animation: fall3 7s linear infinite; }
+        .leaf4 { top: -50px; right: 35%; animation: fall4 9s linear infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fall1 {
+            0% { transform: translateY(-100%) rotate(0deg); }
+            100% { transform: translateY(600%) rotate(720deg); }
+        }
+
+        @keyframes fall2 {
+            0% { transform: translateY(-100%) rotate(45deg); }
+            100% { transform: translateY(600%) rotate(665deg); }
+        }
+
+        @keyframes fall3 {
+            0% { transform: translateY(-100%) rotate(90deg); }
+            100% { transform: translateY(600%) rotate(810deg); }
+        }
+
+        @keyframes fall4 {
+            0% { transform: translateY(-100%) rotate(135deg); }
+            100% { transform: translateY(600%) rotate(875deg); }
+        }
+
+        .btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            margin: 20px auto;
+            width: auto;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        .message-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .message-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes confettiRain {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 15px;
+            font-size: 14px;
+            color: #8B4513;
+            border-top: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            color: #0077b5;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .linkedin-link:hover {
+            opacity: 0.8;
+        }
+
+        .linkedin-icon {
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="leaves leaf1"><div class="leaf"></div></div>
+        <div class="leaves leaf2"><div class="leaf"></div></div>
+        <div class="leaves leaf3"><div class="leaf"></div></div>
+        <div class="leaves leaf4"><div class="leaf"></div></div>
+        
+        <div class="header">Happy Thanksgiving!</div>
+        
+        <div class="turkey">
+            <svg width="150" height="150" viewBox="0 0 200 200">
+                <!-- Tail feathers -->
+                <path d="M50 70 Q100 40 150 70" stroke="#8B4513" fill="none" stroke-width="40" stroke-linecap="round"/>
+                <path d="M45 65 Q100 35 155 65" stroke="#A0522D" fill="none" stroke-width="35" stroke-linecap="round"/>
+                <path d="M40 60 Q100 30 160 60" stroke="#CD853F" fill="none" stroke-width="30" stroke-linecap="round"/>
+                <path d="M35 55 Q100 25 165 55" stroke="#DEB887" fill="none" stroke-width="25" stroke-linecap="round"/>
+                
+                <!-- Body -->
+                <ellipse cx="100" cy="110" rx="45" ry="40" fill="#8B4513"/>
+                
+                <!-- Neck -->
+                <path d="M100 90 Q95 75 100 60" stroke="#8B4513" stroke-width="20" fill="none"/>
+                
+                <!-- Head -->
+                <circle cx="100" cy="60" r="20" fill="#8B4513"/>
+                
+                <!-- Wattle -->
+                <path d="M95 65 Q100 75 105 65" fill="#FF0000"/>
+                
+                <!-- Beak -->
+                <path d="M95 55 L115 55 L105 65 Z" fill="#FFA500"/>
+                
+                <!-- Eyes -->
+                <circle cx="93" cy="53" r="4" fill="white"/>
+                <circle cx="93" cy="53" r="2" fill="black"/>
+                <circle cx="107" cy="53" r="4" fill="white"/>
+                <circle cx="107" cy="53" r="2" fill="black"/>
+                
+                <!-- Legs -->
+                <path d="M85 140 L85 160" stroke="#FFA500" stroke-width="4"/>
+                <path d="M115 140 L115 160" stroke="#FFA500" stroke-width="4"/>
+                <!-- Feet -->
+                <path d="M80 160 L90 160" stroke="#FFA500" stroke-width="4"/>
+                <path d="M110 160 L120 160" stroke="#FFA500" stroke-width="4"/>
+            </svg>
+        </div>
+        
+        <div class="message">
+            Wishing you a harvest of blessings, good health, and happy memories!
+        </div>
+        
+        <button class="btn" onclick="celebrate()">Click For A Thanksgiving Message</button>
+
+        <div class="footer">
+            By Shane Larson
+            <a href="https://www.linkedin.com/in/shane-larson-889aa64/" target="_blank" class="linkedin-link">
+                <svg class="linkedin-icon" viewBox="0 0 24 24" fill="#0077b5">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="message-popup" id="popup">
+        <h2>🦃 Happy Thanksgiving! 🍁</h2>
+        <p>May your day be filled with joy, gratitude, and delicious food!</p>
+    </div>
+
+    <script>
+        function celebrate() {
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            
+            const popup = document.getElementById('popup');
+            popup.classList.add('show');
+            
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 3000);
+        }
+
+        function createConfetti() {
+            const colors = ['#D2691E', '#CD853F', '#8B4513', '#FF7F50', '#DAA520'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.animation = `confettiRain ${Math.random() * 2 + 1}s forwards`;
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
