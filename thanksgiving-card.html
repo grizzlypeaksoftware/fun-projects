@@ -169,7 +169,8 @@
         }
 
         .confetti {
-            position: absolute;
+            position: fixed;  /* Changed to fixed to position relative to viewport */
+            top: -10px;      /* Start slightly above viewport */
             width: 10px;
             height: 10px;
             opacity: 0;
@@ -177,10 +178,16 @@
         }
 
         @keyframes confettiRain {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+            0% { 
+                transform: translateY(-10px) rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg); 
+                opacity: 0; 
+            }
         }
-
+        
         .footer {
             margin-top: auto;
             padding: 15px;
